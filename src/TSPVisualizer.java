@@ -17,10 +17,11 @@
  *  Dependências: Point, StdOut, StdDraw
  **************************************************************************** */
 
- import java.util.ArrayList;
+import java.util.ArrayList;
 import algs4.In;
 import algs4.StdDraw;
 import algs4.StdOut;
+import algs4.*;
 
  public class TSPVisualizer {
  
@@ -148,6 +149,7 @@ import algs4.StdOut;
                 StdDraw.textLeft(10, -10, "número de pontos: " + points.size());
                 StdDraw.setPenColor(StdDraw.RED);
                 StdDraw.textLeft(10, -35, "vizinho mais próximo: " + nearest.length());
+                StdOut.println(nearest.length());
                 StdDraw.show();
                 StdDraw.pause(50);
              }

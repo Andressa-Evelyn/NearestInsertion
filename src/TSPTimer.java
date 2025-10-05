@@ -17,6 +17,7 @@
  import algs4.StdRandom;
  import algs4.Stopwatch;
  import algs4.StdOut;
+ import algs4.*;
  
  public class TSPTimer {
  
@@ -29,12 +30,12 @@
         // gerar dados e executar a heurística de inserção pelo vizinho mais próximo
         StdRandom.setSeed(123456789L);
         Stopwatch timer1 = new Stopwatch();
-        Tour tour1 = new Tour();
+        Tour tour1 = new Tour(true);
         for (int i = 0; i < n; i++) {
             double x = StdRandom.uniformDouble(lo, hi);
             double y = StdRandom.uniformDouble(lo, hi);
             Point p = new Point(x, y);
-            tour1.insertNearest(p);
+            tour1.insertNearestKd(p);
         }
 
         double length1 = tour1.length();

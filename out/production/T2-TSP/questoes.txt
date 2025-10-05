@@ -36,10 +36,10 @@ Q3. Preencha os comprimentos calculados pela heurística do vizinho mais próxim
 
 | Arquivo de dados | Vizinho mais próximo |
 | ---------------- | -------------------- |
-| tsp10.txt        |                      |
-| tsp100.txt       |                      |
-| tsp1000.txt      |                      |
-| usa13509.txt     |                      |
+| tsp10.txt        |  2029.5495945867833  |
+| tsp100.txt       |   7881.385964540676  |
+| tsp1000.txt      |   28690.95931004615  |
+| usa13509.txt     |   78300.95640971739  |
 
 Q4. Realize a análise de tempo abaixo:
 

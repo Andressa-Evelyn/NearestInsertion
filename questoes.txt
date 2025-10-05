@@ -36,10 +36,10 @@ Q3. Preencha os comprimentos calculados pela heurística do vizinho mais próxim
 
 | Arquivo de dados | Vizinho mais próximo |
 | ---------------- | -------------------- |
-| tsp10.txt        |  2029.5495945867833  |
-| tsp100.txt       |   7881.385964540676  |
-| tsp1000.txt      |   28690.95931004615  |
-| usa13509.txt     |   78300.95640971739  |
+| tsp10.txt        |  1566.1363051360363  |
+| tsp100.txt       |   7389.929676351667  |
+| tsp1000.txt      |  27868.710634854797  |
+| usa13509.txt     |  77449.97941714071   |
 
 Q4. Realize a análise de tempo abaixo:
 
@@ -49,13 +49,13 @@ Q4. Realize a análise de tempo abaixo:
 
 | n      | Tempo (s) ingênuo | Tempo (s) com KdTree |
 | ------ | ----------------- | -------------------- |
-| 1000   |                   |                      |
-| 2000   |                   |                      |
-| 4000   |                   |                      |
-| 8000   |                   |                      |
-| 16000  |                   |                      |
-| 32000  |                   |                      |
-| 64000  |                   |                      |
+| 1000   | 0.025 segundos    |                      |
+| 2000   | 0.108 segundos    |                      |
+| 4000   | 0.415 segundos    |                      |
+| 8000   | 1.77 segundos     |                      |
+| 16000  | 8.211 segundos    |                      |
+| 32000  | 38.077 segundos   |                      |
+| 64000  | 179.254 segundos  |                      |
 | 128000 |                   |                      |
 | 256000 |                   |                      |
 | 512000 |                   |                      |

@@ -162,13 +162,7 @@ public final class StdOut {
         out.println(x);
     }
 
-   /**
-     * Prints a byte to standard output and then terminates the line.
-     * <p>
-     * To write binary data, see {@link BinaryStdOut}.
-     *
-     * @param x the byte to print
-     */
+
     public static void println(byte x) {
         out.println(x);
     }

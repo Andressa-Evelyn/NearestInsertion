@@ -5,6 +5,7 @@
 import algs4.StdIn;
 import algs4.StdOut;
 import algs4.StdDraw;
+import algs4.*;
 
 public class NearestInsertion {
 
@@ -15,6 +16,7 @@ public class NearestInsertion {
         StdDraw.setCanvasSize(width, height + border);
         StdDraw.setXscale(0, width);
         StdDraw.setYscale(-border, height);
+
         StdDraw.enableDoubleBuffering();
 
         Tour tour = new Tour();

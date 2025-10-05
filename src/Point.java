@@ -13,6 +13,7 @@
 
 import algs4.StdDraw;
 import algs4.StdIn;
+import algs4.*;
 
 public class Point { 
     private final double x;   // coordenada cartesiana x
