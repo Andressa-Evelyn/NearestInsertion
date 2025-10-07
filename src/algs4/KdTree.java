@@ -38,7 +38,7 @@ public class KdTree {
     //insere um ponto na árvore
     public void insert(Point2D p) {
         if (p == null) throw new IllegalArgumentException("p é nulo");
-        root = insert(root, p, true, 0, 0, 1, 1);
+        root = insert(root, p, true, 0, 0, 600, 600);
     }
 
     //Insere ponto com alternância entre divisão vertical e horizontal

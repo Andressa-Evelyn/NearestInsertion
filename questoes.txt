@@ -47,16 +47,14 @@ Q4. Realize a análise de tempo abaixo:
 - Execute a heurística para \(n = 1000\) e dobre \(n\) repetidamente até que o tempo de execução ultrapasse 60 segundos.
 - Utilize o **TSPTimer** com a opção **-Xint** para desativar otimizações do compilador.
 
-| n      | Tempo (s) ingênuo | Tempo (s) com KdTree |
-| ------ | ----------------- | -------------------- |
-| 1000   | 0.025 segundos    |                      |
-| 2000   | 0.108 segundos    |                      |
-| 4000   | 0.415 segundos    |                      |
-| 8000   | 1.77 segundos     |                      |
-| 16000  | 8.211 segundos    |                      |
-| 32000  | 38.077 segundos   |                      |
-| 64000  | 179.254 segundos  |                      |
-| 128000 |                   |                      |
-| 256000 |                   |                      |
-| 512000 |                   |                      |
-| 1024000|                   |                      |
+| 1000   | 0.025 segundos    |     0.0 segundos     |
+| 2000   | 0.108 segundos    |     0.016 segundos   |
+| 4000   | 0.415 segundos    |     0.031 segundos   |
+| 8000   | 1.77 segundos     |     0.094 segundos   |
+| 16000  | 8.211 segundos    |     0.5 segundos     |
+| 32000  | 38.077 segundos   |     3.174 segundos   |
+| 64000  | 179.254 segundos  |     16.084 segundos  |
+| 128000 |   +1min           |     64.394 segundos  |
+| 256000 |   +1min           |     130.512 segundos |
+| 512000 |   +1min           |       +1min          |
+| 1024000|   +1min           |       +1min          |

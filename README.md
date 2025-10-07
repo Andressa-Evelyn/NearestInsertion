@@ -20,14 +20,12 @@ Template para implementar a heurística do vizinho mais próximo no Problema do 
 
 ## Compilação
 ```bash
-javac -cp src:algs4 src/*.java
+javac src\*.java src\algs4\*.java   
 ```
-(Em Windows, use `;` no lugar de `:`.)
 
 ## Execução
-- Heurística: `java -cp src:algs4 NearestInsertion < data/tsp10.txt`
-- Visualizador: `java -cp src:algs4 TSPVisualizer data/tsp1000.txt`
-- Temporizador: `java -Xint -cp src:algs4 TSPTimer 1000`
+- Visualizador: `java -cp src TSPVisualizer data/tsp10.txt`
+- Temporizador: `java -cp src TSPTimer 1000`
 
 ## Referências de resultado
 - `results/tsp10-nearest.ans`: evolução do tour gerado pela heurística nearest (útil para depurar).
