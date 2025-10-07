@@ -60,7 +60,7 @@ public class Tour {
         return total;
     }
 
-    //imprime todos os pontos na ordem da rota
+
     public String toString() {
         if (start == null)
             return "(vazio)";
@@ -75,7 +75,7 @@ public class Tour {
         return sb.toString();
     }
 
-    //desenha o tour na tela com StdDraw
+
     public void draw() {
         if (start == null)
             return;
@@ -159,7 +159,7 @@ public class Tour {
             start = novo;
             novo.next = novo;
             count = 1;
-            kdTree.insert(new Point2D(p.x(), p.y()));
+            kdTree.insert(p);
             return;
         }
 
@@ -168,14 +168,14 @@ public class Tour {
             start.next = novo;
             novo.next = start;
             count++;
-            kdTree.insert(new Point2D(p.x(), p.y()));
+            kdTree.insert(p);
             return;
         }
 
         // Caso 3: busca o ponto mais próximo via KdTree
-        Point2D nearest = kdTree.nearest(new Point2D(p.x(), p.y()));
+        Point nearest = kdTree.nearest(p);
 
-        // Agora precisamos encontrar o nó correspondente na lista
+        // Encontrar o nó correspondente na lista
         Node atual = start;
         Node maisProximo = start;
         do {
@@ -191,11 +191,10 @@ public class Tour {
         maisProximo.next = novo;
         count++;
 
-        // Inserir o ponto na KdTree também
-        kdTree.insert(new Point2D(p.x(), p.y()));
-
-
+        // Inserir também na KdTree
+        kdTree.insert(p);
     }
+
 
     public static void main(String[] args) {
         // Cria o tour sem usar KdTree (ingênuo)

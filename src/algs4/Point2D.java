@@ -14,7 +14,7 @@ import java.util.Comparator;
 
 
 /**
- *  The {@code Point} class is an immutable data type to encapsulate a
+ *  The {@code algs4.Point} class is an immutable data type to encapsulate a
  *  two-dimensional point with real-value coordinates.
  *  <p>
  *  Note: in order to deal with the difference behavior of double and
@@ -226,7 +226,7 @@ public final class Point2D implements Comparable<Point2D> {
         }
     }
 
-    // compare other points relative to atan2 angle (between -pi/2 and pi/2) they make with this Point
+    // compare other points relative to atan2 angle (between -pi/2 and pi/2) they make with this algs4.Point
     private class Atan2Order implements Comparator<Point2D> {
         public int compare(Point2D q1, Point2D q2) {
             double angle1 = angleTo(q1);
@@ -235,7 +235,7 @@ public final class Point2D implements Comparable<Point2D> {
         }
     }
 
-    // compare other points relative to polar angle (between 0 and 2pi) they make with this Point
+    // compare other points relative to polar angle (between 0 and 2pi) they make with this algs4.Point
     private class PolarOrder implements Comparator<Point2D> {
         public int compare(Point2D q1, Point2D q2) {
             double dx1 = q1.x - x;

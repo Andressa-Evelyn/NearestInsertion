@@ -8,7 +8,7 @@ Template para implementar a heurística do vizinho mais próximo no Problema do 
 3. Preencher `questoes.txt` com respostas conceituais, comprimentos de tour e medições de tempo (comparando as duas abordagens).
 
 ## Estrutura do template
-- `src/`: classes principais (`Tour`, `Point`, `NearestInsertion`, `TSPVisualizer`, `TSPTimer`).
+- `src/`: classes principais (`Tour`, `algs4.Point`, `NearestInsertion`, `TSPVisualizer`, `TSPTimer`).
 - `algs4/`: utilitários necessários da biblioteca algs4, incluindo um stub de `KdTree`.
 - `data/`: coloque aqui os arquivos de teste (p. ex. `tsp10.txt`, `tsp100.txt`, ...).
 - `results/`: contém referências de saída para `tsp10.txt`.
@@ -24,6 +24,7 @@ javac src\*.java src\algs4\*.java
 ```
 
 ## Execução
+- Heurística: `java -cp src NearestInsertion data/tsp10.txt`
 - Visualizador: `java -cp src TSPVisualizer data/tsp10.txt`
 - Temporizador: `java -cp src TSPTimer 1000`
 

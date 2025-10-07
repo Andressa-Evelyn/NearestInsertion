@@ -1,19 +1,22 @@
 package algs4;
 
+import java.awt.*;
+
 /**
- * Estrutura KdTree a ser implementada pelo aluno.
+ * Implementação simples de uma árvore k-d (2D) compatível com a classe algs4.Point.
+ *
+ * Permite inserir pontos e buscar o mais próximo (nearest neighbor).
  */
 public class KdTree {
 
+    // Nó da árvore
     private static class Node {
-        Point2D p;        // ponto armazenado
-        RectHV rect;      // região correspondente
-        Node left, right; // subárvores
-        boolean vertical; // nível de divisão (true = vertical, false = horizontal)
+        Point p;           // ponto armazenado
+        Node left, right;  // subárvores
+        boolean vertical;  // eixo de comparação (x: true, y: false)
 
-        Node(Point2D p, RectHV rect, boolean vertical) {
+        Node(Point p, boolean vertical) {
             this.p = p;
-            this.rect = rect;
             this.vertical = vertical;
         }
     }
@@ -27,77 +30,58 @@ public class KdTree {
         size = 0;
     }
 
+
+    public int size() {
+        return size;
+    }
+
+
     public boolean isEmpty() {
         return size == 0;
     }
 
-    public int size() {
-        throw new UnsupportedOperationException("implementar size()");
+
+    public void insert(Point p) {
+        if (p == null) throw new IllegalArgumentException("ponto nulo");
+        root = insert(root, p, true);
     }
 
-    //insere um ponto na árvore
-    public void insert(Point2D p) {
-        if (p == null) throw new IllegalArgumentException("p é nulo");
-        root = insert(root, p, true, 0, 0, 600, 600);
-    }
-
-    //Insere ponto com alternância entre divisão vertical e horizontal
-    private Node insert(Node node, Point2D p, boolean vertical, double xmin, double ymin, double xmax, double ymax) {
+    private Node insert(Node node, Point p, boolean vertical) {
         if (node == null) {
             size++;
-            return new Node(p, new RectHV(xmin, ymin, xmax, ymax), vertical);
+            return new Node(p, vertical);
         }
 
-        if (node.p.equals(p)) return node; // já existe
-
-        if (vertical) {
-            if (p.x() < node.p.x())
-                node.left = insert(node.left, p, !vertical, xmin, ymin, node.p.x(), ymax);
-            else
-                node.right = insert(node.right, p, !vertical, node.p.x(), ymin, xmax, ymax);
-        } else {
-            if (p.y() < node.p.y())
-                node.left = insert(node.left, p, !vertical, xmin, ymin, xmax, node.p.y());
-            else
-                node.right = insert(node.right, p, !vertical, xmin, node.p.y(), xmax, ymax);
+        if (node.p.x() == p.x() && node.p.y() == p.y()) {
+            return node; // ignora duplicata
         }
+
+        if (compare(p, node.p, node.vertical) < 0)
+            node.left = insert(node.left, p, !node.vertical);
+        else
+            node.right = insert(node.right, p, !node.vertical);
 
         return node;
     }
 
-    //verifica se já existe
-    private boolean contains(Node node, Point2D p) {
-        if (node == null) return false;
-        if (node.p.equals(p)) return true;
 
-        if (node.vertical) {
-            if (p.x() < node.p.x()) return contains(node.left, p);
-            else return contains(node.right, p);
-        } else {
-            if (p.y() < node.p.y()) return contains(node.left, p);
-            else return contains(node.right, p);
-        }
-    }
-
-    //retorna o ponto mais próximo do ponto consultado
-    public Point2D nearest(Point2D p) {
-        if (p == null) throw new IllegalArgumentException("p é nulo");
+    public Point nearest(Point query) {
+        if (query == null) throw new IllegalArgumentException("ponto nulo");
         if (root == null) return null;
-        return nearest(root, p, root.p, Double.POSITIVE_INFINITY);
+        return nearest(root, query, root.p, query.distanceTo(root.p));
     }
 
-    //Retorna o ponto mais próximo (usa poda por região retangular)
-    private Point2D nearest(Node node, Point2D query, Point2D best, double bestDist) {
+    private Point nearest(Node node, Point query, Point best, double bestDist) {
         if (node == null) return best;
 
-        double d = query.distanceSquaredTo(node.p);
+        double d = query.distanceTo(node.p);
         if (d < bestDist) {
             best = node.p;
             bestDist = d;
         }
 
         Node first, second;
-        if ((node.vertical && query.x() < node.p.x()) || (!node.vertical && query.y() < node.p.y())) {
+        if (compare(query, node.p, node.vertical) < 0) {
             first = node.left;
             second = node.right;
         } else {
@@ -106,12 +90,20 @@ public class KdTree {
         }
 
         best = nearest(first, query, best, bestDist);
-        bestDist = query.distanceSquaredTo(best);
+        bestDist = query.distanceTo(best);
 
-        if (second != null && node.rect.distanceSquaredTo(query) < bestDist) {
+        double delta = (node.vertical ? query.x() - node.p.x() : query.y() - node.p.y());
+        if (delta * delta < bestDist)
             best = nearest(second, query, best, bestDist);
-        }
 
         return best;
+    }
+
+
+    private int compare(Point a, Point b, boolean vertical) {
+        if (vertical)
+            return Double.compare(a.x(), b.x());
+        else
+            return Double.compare(a.y(), b.y());
     }
 }

@@ -3,7 +3,7 @@
  *
  *  Compilação:  javac TSPTimer.java
  *  Execução:    java -Xint TSPTimer n
- *  Dependências: Tour.java Point.java Stopwatch.java StdOut.java
+ *  Dependências: Tour.java algs4.Point.java Stopwatch.java StdOut.java
  *
  *  Mede o tempo da heurística do vizinho mais próximo gerando instâncias aleatórias de tamanho n.
  *

@@ -14,7 +14,7 @@
  *                  - m   alterna correção do clique do mouse ('modo de desenho')
  *                  - q   sair (não!)
  *
- *  Dependências: Point, StdOut, StdDraw
+ *  Dependências: algs4.Point, StdOut, StdDraw
  **************************************************************************** */
 
 import java.util.ArrayList;

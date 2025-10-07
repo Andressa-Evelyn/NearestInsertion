@@ -1,21 +1,17 @@
-/* *****************************************************************************
+package algs4;/* *****************************************************************************
  *  NÃO MODIFIQUE OU SUBMETA ESTE ARQUIVO.
  *
  *  Retirado da Seção 3.2, An Introduction to Programming (in Java)
  *  por Robert Sedgewick e Kevin Wayne
  *
- *  Compilação:  javac Point.java
- *  Execução:    java Point < input.txt
+ *  Compilação:  javac algs4.Point.java
+ *  Execução:    java algs4.Point < input.txt
  *
  *  Tipo de dado imutável para pontos 2D com coordenadas de ponto flutuante.
  *
  **************************************************************************** */
 
-import algs4.StdDraw;
-import algs4.StdIn;
-import algs4.*;
-
-public class Point { 
+public class Point {
     private final double x;   // coordenada cartesiana x
     private final double y;   // coordenada cartesiana y
    
