@@ -6,6 +6,8 @@ import java.awt.*;
  * Implementação simples de uma árvore k-d (2D) compatível com a classe algs4.Point.
  *
  * Permite inserir pontos e buscar o mais próximo (nearest neighbor).
+ * Todas as comparações internas usam distância ao quadrado (sem raiz quadrada),
+ * assim como no código do João.
  */
 public class KdTree {
 
@@ -24,23 +26,20 @@ public class KdTree {
     private Node root;
     private int size;
 
-
     public KdTree() {
         root = null;
         size = 0;
     }
 
-
     public int size() {
         return size;
     }
-
 
     public boolean isEmpty() {
         return size == 0;
     }
 
-
+    // Inserção de um ponto
     public void insert(Point p) {
         if (p == null) throw new IllegalArgumentException("ponto nulo");
         root = insert(root, p, true);
@@ -52,10 +51,12 @@ public class KdTree {
             return new Node(p, vertical);
         }
 
+        // Ignora duplicatas
         if (node.p.x() == p.x() && node.p.y() == p.y()) {
-            return node; // ignora duplicata
+            return node;
         }
 
+        // Compara conforme o eixo
         if (compare(p, node.p, node.vertical) < 0)
             node.left = insert(node.left, p, !node.vertical);
         else
@@ -64,20 +65,20 @@ public class KdTree {
         return node;
     }
 
-
+    // Busca o ponto mais próximo
     public Point nearest(Point query) {
         if (query == null) throw new IllegalArgumentException("ponto nulo");
         if (root == null) return null;
-        return nearest(root, query, root.p, query.distanceTo(root.p));
+        return nearest(root, query, root.p, distanceSquared(query, root.p));
     }
 
-    private Point nearest(Node node, Point query, Point best, double bestDist) {
+    private Point nearest(Node node, Point query, Point best, double bestDistSquared) {
         if (node == null) return best;
 
-        double d = query.distanceTo(node.p);
-        if (d < bestDist) {
+        double dSquared = distanceSquared(query, node.p);
+        if (dSquared < bestDistSquared) {
             best = node.p;
-            bestDist = d;
+            bestDistSquared = dSquared;
         }
 
         Node first, second;
@@ -89,21 +90,28 @@ public class KdTree {
             second = node.left;
         }
 
-        best = nearest(first, query, best, bestDist);
-        bestDist = query.distanceTo(best);
+        best = nearest(first, query, best, bestDistSquared);
+        bestDistSquared = distanceSquared(query, best);
 
         double delta = (node.vertical ? query.x() - node.p.x() : query.y() - node.p.y());
-        if (delta * delta < bestDist)
-            best = nearest(second, query, best, bestDist);
+        if (delta * delta < bestDistSquared)
+            best = nearest(second, query, best, bestDistSquared);
 
         return best;
     }
 
-
+    // Compara dois pontos de acordo com o eixo
     private int compare(Point a, Point b, boolean vertical) {
         if (vertical)
             return Double.compare(a.x(), b.x());
         else
             return Double.compare(a.y(), b.y());
+    }
+
+    // Calcula a distância ao quadrado entre dois pontos
+    private double distanceSquared(Point a, Point b) {
+        double dx = a.x() - b.x();
+        double dy = a.y() - b.y();
+        return dx * dx + dy * dy;
     }
 }
