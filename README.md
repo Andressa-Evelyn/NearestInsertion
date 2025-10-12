@@ -26,7 +26,7 @@ javac src\*.java src\algs4\*.java
 ## Execução
 - Heurística: `java -cp src NearestInsertion data/tsp10.txt`
 - Visualizador: `java -cp src TSPVisualizer data/tsp10.txt`
-- Temporizador: `java -cp src TSPTimer 1000`
+- Temporizador: `java -Xint -cp src TSPTimer 1000`
 
 ## Referências de resultado
 - `results/tsp10-nearest.ans`: evolução do tour gerado pela heurística nearest (útil para depurar).
